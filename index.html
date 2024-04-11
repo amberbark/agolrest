@@ -147,8 +147,8 @@
 
         // Define a pop-up for usaeduLayer
         const popupEduusa = {
-          "title": "EDUs",
-          "content": "<b>Name:</b> {INSTNM}<br><b>Total Enrollment:</b> {INSTSIZE}<br><b>Location:</b> {CITY}, {STABBR}<br><b>Website:</b> {WEBADDR}<br>"
+          "title": "{INSTNM}",
+          "content": "<b>Location:</b> {CITY}, {STABBR}<br><b>Total Enrollment:</b> {INSTSIZE}<br><b>Website:</b> {WEBADDR}<br>"
         }
 
         // Define a renderer with a visual variable
@@ -158,7 +158,7 @@
             type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
             style: "square", // Set a constant style here
             size: "10px", // Set a constant size here
-            color: "blue", // Set a constant color here
+            color: [0, 84, 150, 0.7], // Gators blue
             outline: {
               color: [255, 255, 255], // White outline
               width: 1
