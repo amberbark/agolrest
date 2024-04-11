@@ -107,6 +107,42 @@
         });
 
         graphicsLayer.add(polylineGraphic);
+
+        // Create a polygon geometry
+        const polygon = {
+          type: "polygon",
+          rings: [
+            [-82.3549, 29.6436],
+            [-82.3540, 29.6430],
+            [-82.3530, 29.6440],
+            [-82.3549, 29.6436]
+          ]
+        };
+
+        // Create a symbol for drawing the polygon
+        const simpleFillSymbol = {
+          type: "simple-fill",
+          color: [243, 112, 33, 0.8], // Gator orange color with opacity
+          outline: {
+            color: [0, 84, 150], // Gators blue
+            width: 1
+          }
+        };
+
+        // Define popup template for the polygon
+        const polygonPopupTemplate = {
+          title: "My Polygon",
+          content: "This is a polygon."
+        };
+
+        // Create a graphic and add the geometry and symbol to it
+        const polygonGraphic = new Graphic({
+          geometry: polygon,
+          symbol: simpleFillSymbol,
+          popupTemplate: polygonPopupTemplate // Add the popup template here
+        });
+
+        graphicsLayer.add(polygonGraphic);
     });
   </script>
 
