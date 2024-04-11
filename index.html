@@ -29,7 +29,7 @@
       const view = new MapView({
           map: map,
           center: [-82.3549, 29.6436], // Longitude, latitude
-          zoom: 15, // Zoom level
+          zoom: 14.5, // Zoom level
           container: "viewDiv" // Div element
         });
       
@@ -52,10 +52,23 @@
           }  
         };
 
+        const popupTemplate = {
+          title: "{Name}",
+          content: "{Description}"
+      };
+        const attributes = {
+            Name: "Albert and Alberta Statue",
+            Description: "A statue of the University of Florida's mascots, by Peter Forster."
+        };
+
         const pointGraphic = new Graphic({  
           geometry: point,  
-          symbol: simpleMarkerSymbol  
+          symbol: simpleMarkerSymbol,  
         });
+
+        //adding popup properties
+        attributes: attributes,
+        popupTemplate: popupTemplate
 
         graphicsLayer.add(pointGraphic);
     });
