@@ -76,10 +76,42 @@
 
         //adding the point to the graphics layer
         graphicsLayer.add(pointGraphic);
+
+        // Create a polyline geometry
+        const polyline = {
+          type: "polyline",
+          paths: [
+            [-82.363521, 29.643232], // Starting point
+            [-82.360803, 29.644891] // Ending point
+          ]
+        };
+
+        // Create a symbol for drawing the polyline
+        const simpleLineSymbol = {
+          type: "simple-line",
+          color: [0, 84, 150], // Gators blue
+          width: 2
+        };
+
+        // Define popup template for the polyline
+        const polylinePopupTemplate = {
+          title: "A nice path to walk",
+          content: "This path has views of the bat houses on one side and Lake Alice on the other."
+        };
+
+        // Create a graphic and add the geometry and symbol to it
+        const polylineGraphic = new Graphic({
+          geometry: polyline,
+          symbol: simpleLineSymbol,
+          popupTemplate: polylinePopupTemplate // Add the popup template here
+        });
+
+        graphicsLayer.add(polylineGraphic);
     });
   </script>
 
   <!-- css to make a full screen map -->
+  
   <style>
     html,
     body,
