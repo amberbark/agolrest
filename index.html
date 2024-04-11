@@ -151,33 +151,43 @@
           "content": "<b>Name:</b> {INSTNM}<br><b>Total Enrollment:</b> {INSTSIZE}<br><b>Location:</b> {CITY}, {STABBR}<br><b>Website:</b> {WEBADDR}<br>"
         }
 
-        // Define a renderer with a visual variable
-        const renderer = {
+        // Define a renderer with visual variables
+                const renderer = {
           type: "simple", // autocasts as new SimpleRenderer()
           symbol: {
             type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-            size: "10px", // Set a constant size here
-            color: [0, 84, 150,0.8], // Set a constant color here
-            style: "square", // Corrected here
             outline: {
               color: [255, 255, 255], // White outline
-              width: 2
+              width: 1
             }
-          }
+          },
+          visualVariables: [
+            {
+              type: "size",
+              field: "INSTSIZE",
+              minDataValue: 1,
+              maxDataValue: 10000,
+              minSize: "4px",
+              maxSize: "40px"
+            },
+            {
+              type: "color",
+              field: "INSTSIZE",
+              stops: [
+                { value: 1, color: "blue" },
+                { value: 5000, color: "green" },
+                { value: 10000, color: "red" }
+              ]
+            }
+          ]
         };
-
-        // Define a pop-up for usaeduLayer
-        const popupEduusa = {
-          "title": "{INSTNM}",
-          "content": "<b>Total Enrollment:</b> {INSTSIZE}<br><b>Location:</b> {CITY}, {STABBR}<br><b>Website:</b> {WEBADDR}<br>"
-        }
 
         //adding the Const for the feature layer
         const usaeduLayer = new FeatureLayer({
           url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
 
         //adding the popup here
-        outFields: ["INSTNM","INSTSIZE","CITY","STABBR","ICLEVEL"], // Add "ICLEVEL" here
+        outFields: ["INSTNM","INSTSIZE","CITY","STABBR"],
         popupTemplate: popupEduusa,
         renderer: renderer // Add the renderer here
         });
