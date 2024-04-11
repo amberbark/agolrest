@@ -148,7 +148,7 @@
         // Define a pop-up for usaeduLayer
         const popupEduusa = {
           "title": "EDUs",
-          "content": "<b>Name:</b> {INSTNM}<br><b>Total Enrollment:</b> {INSTSIZE}<br><b>Location:</b> {CITY}, {STABBR}<br>"
+          "content": "<b>Name:</b> {INSTNM}<br><b>Total Enrollment:</b> {INSTSIZE}<br><b>Location:</b> {CITY}, {STABBR}<br><b>Website:</b> {WEBADDR}<br>"
         }
 
         // Define a renderer with a visual variable
@@ -177,7 +177,7 @@
           url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
 
         //adding the popup here
-          outFields: ["INSTNM","INSTSIZE","CITY","STABBR"],
+          outFields: ["INSTNM","INSTSIZE","CITY","STABBR", "WEBADDR"],
           popupTemplate: popupEduusa,
           renderer: renderer // Add the renderer here
         });
