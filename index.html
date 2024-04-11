@@ -42,6 +42,7 @@
           latitude: 29.65312124109323
           };
 
+        //defining the marker style
         const simpleMarkerSymbol = {  
           type: "simple-marker",  
           color: [243, 112, 33],  // Gators orange
@@ -52,24 +53,28 @@
           }  
         };
 
+        //defining popup properties
         const popupTemplate = {
           title: "{Name}",
           content: "{Description}"
-      };
+        }
         const attributes = {
             Name: "Albert and Alberta Statue",
             Description: "A statue of the University of Florida's mascots, by Peter Forster."
-        };
+        }
 
+        //creating the point
         const pointGraphic = new Graphic({  
           geometry: point,  
           symbol: simpleMarkerSymbol,  
-        });
 
         //adding popup properties
         attributes: attributes,
         popupTemplate: popupTemplate
 
+        });
+
+        //adding the point to the graphic layer
         graphicsLayer.add(pointGraphic);
     });
   </script>
