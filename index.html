@@ -151,17 +151,17 @@
           "content": "<b>Name:</b> {INSTNM}<br><b>Total Enrollment:</b> {INSTSIZE}<br><b>Location:</b> {CITY}, {STABBR}<br><b>Website:</b> {WEBADDR}<br>"
         }
 
-         // Define a renderer with a visual variable
-         const renderer = {
+        // Define a renderer with a visual variable
+        const renderer = {
           type: "simple", // autocasts as new SimpleRenderer()
           symbol: {
             type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
             size: "10px", // Set a constant size here
-            color: "purple", // Set a constant color here
-            Style: "square",
+            color: [0, 84, 150,0.8], // Set a constant color here
+            style: "square", // Corrected here
             outline: {
               color: [255, 255, 255], // White outline
-              width: 3
+              width: 2
             }
           }
         };
