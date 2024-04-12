@@ -195,6 +195,7 @@
           url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_AirportsBark/FeatureServer",
           outFields: ["*"], // Fetch all fields
           renderer: airportRenderer, // Add the renderer here
+          definitionExpression: "Fac_Type = 'AIRPORT'", //adding sql to filter for airports
           popupTemplate: {
             title: "{Fac_Name}", // Replace with the actual field name for the airport's name
             content: "<b>Location:</b> {City}, {State_Name}<br><b>Facility Type:</b> {Fac_Type}<br>"
