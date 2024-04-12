@@ -190,20 +190,38 @@
         }
       }
        
+        //const to make the airport labels
+        const airportLabels = {
+          symbol: {
+            type: "text",
+            color: "#FFFFFF",
+            haloColor: "#5E8D74",
+            haloSize: "2px",
+            font: {
+              size: "12px",
+              family: "Noto Sans",
+              style: "italic",
+              weight: "normal"
+            }
+          },
+          labelPlacement: "above-center",
+          labelExpressionInfo: {
+            expression: "$feature.Fac_Name"
+          }
+        }; 
+      
         // Define a new feature layer
-        const airportsLayer = new FeatureLayer({
+        const airportLayer = new FeatureLayer({
           url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_AirportsBark/FeatureServer",
           outFields: ["*"], // Fetch all fields
           renderer: airportRenderer, // Add the renderer here
           definitionExpression: "Fac_Type = 'AIRPORT'", //adding sql to filter for airports
-          popupTemplate: {
-            title: "{Fac_Name}", // Replace with the actual field name for the airport's name
-            content: "<b>Location:</b> {City}, {State_Name}<br><b>Facility Type:</b> {Fac_Type}<br>"
-          }
+          labelingInfo: [airportLabels] //adding the labels
+
         });
 
         // Add the new feature layer to the map
-        map.add(airportsLayer);
+        map.add(airportLayer);
     });
   </script>
 
