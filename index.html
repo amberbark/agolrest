@@ -280,8 +280,8 @@
             symbol: {  
                 type: "picture-marker",  
                 url: "https://amberbark.github.io/agolrest/585px-Google_Maps_pin.svg.png",
-                width: "16px",
-                height: "18px"
+                width: "14px",
+                height: "20px"
             }
         },
 
@@ -321,8 +321,30 @@
         // Add the widget to the view
         view.ui.add(editor, "top-right");
 
+        // Add the widget to the view
+        view.ui.add(editor, "top-right");
+
+        // Create a new Legend
+        var legend = new Legend({
+            view: view,
+            layerInfos: [{
+                layer: airport,
+                title: "Airports"
+            }, {
+                layer: heliport,
+                title: "Heliports"
+            }, {
+                layer: myAirports,
+                title: "My Airports"
+            }]
+        });
+
+        // Add the Legend to the view
+        view.ui.add(legend, "bottom-right");
+
         });
         </script>
+
 
         <!-- css to make a full screen map -->
   
