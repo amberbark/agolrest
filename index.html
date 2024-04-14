@@ -313,37 +313,34 @@
             layer: myAirports
         }
 
-        // Begin Editor constructor
-        const editor = new Editor({
+               // Begin Editor constructor
+               const editor = new Editor({
             view: view,
             layerInfos: [pointInfos]
         }); // End Editor constructor
 
-        // Add the widget to the view
-        view.ui.add(editor, "top-right");
-
         view.when(function() {
-        // Add the widget to the view
-        view.ui.add(editor, "top-right");
+            // Add the widget to the view
+            view.ui.add(editor, "top-right");
 
-        // Create a new Legend
-        var legend = new Legend({
-            view: view,
-            layerInfos: [{
-                layer: airport,
-                title: "Airports"
-            }, {
-                layer: heliport,
-                title: "Heliports"
-            }, {
-                layer: myAirports,
-                title: "My Airports"
-            }]
-        });
+            // Create a new Legend
+            var legend = new Legend({
+                view: view,
+                layerInfos: [{
+                    layer: airport,
+                    title: "Airports"
+                }, {
+                    layer: heliport,
+                    title: "Heliports"
+                }, {
+                    layer: myAirports,
+                    title: "My Airports"
+                }]
+            });
 
-        // Add the Legend to the view
-        view.ui.add(legend, "bottom-right");
-    }); // End of view.when()
+            // Add the Legend to the view
+            view.ui.add(legend, "bottom-right");
+        }); // End of view.when()
 
         </script>
 
