@@ -5,11 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
-
   <!-- calls for the arcgis api's CSS file and JS library. -->
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
-
   <!-- Adding the modules, API key, and map constant needed for a full screen map app -->
   <script>
   
@@ -20,15 +18,12 @@
       "esri/Graphic",  
       "esri/layers/GraphicsLayer",
       "esri/layers/FeatureLayer",
-      "esri/widgets/Editor",
-      "esri/widgets/Legend"
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer, Editor, Legend) {
-
+      "esri/widgets/Editor"
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer, Editor) {
       esriConfig.apiKey = "AAPK7d13587c1f82408cbc5a040c7059d8fee7IBoeXwdO2zPSzZvEywKiEr-G85VeIgjX2FmIlp-IoFVmo7QLBxqKibLvYv8ppp";
       const map = new Map({
         basemap: "arcgis-topographic" // Basemap layer
       });
-
       const view = new MapView({
           map: map,
           center: [-82.3549, 29.6436], // Longitude, latitude
@@ -45,7 +40,6 @@
           longitude: -82.349352,    //long lat of Albert and Alberta statue
           latitude: 29.652265
           };
-
         //defining the marker style
         const simpleMarkerSymbol = {  
           type: "simple-marker",  
@@ -57,7 +51,6 @@
             width: 1
           }  
         };
-
         //defining popup properties
         const popupTemplate = {
           title: "{Name}",
@@ -67,7 +60,6 @@
             Name: "Albert and Alberta Statue",
             Description: "A statue of the University of Florida's mascots, by Peter Forster."
         }
-
        // creating the point
         const pointGraphic = new Graphic({
           geometry: point,
@@ -77,10 +69,8 @@
           attributes: attributes,
           popupTemplate: popupTemplate
         });
-
         //adding the point to the graphics layer
         graphicsLayer.add(pointGraphic);
-
         // Create a polyline geometry
         const polyline = {
           type: "polyline",
@@ -89,29 +79,24 @@
             [-82.360803, 29.644891] // Ending point
           ]
         };
-
         // Create a symbol for drawing the polyline
         const simpleLineSymbol = {
           type: "simple-line",
           color: [0, 84, 150], // Gators blue
           width: 2
         };
-
         // Define popup template for the polyline
         const polylinePopupTemplate = {
           title: "A nice path to walk",
           content: "This path has views of the bat houses on one side and Lake Alice on the other."
         };
-
         // Create a graphic and add the geometry and symbol to it
         const polylineGraphic = new Graphic({
           geometry: polyline,
           symbol: simpleLineSymbol,
           popupTemplate: polylinePopupTemplate // Add the popup template here
         });
-
         graphicsLayer.add(polylineGraphic);
-
         // Create a polygon geometry
         const polygon = {
           type: "polygon",
@@ -122,7 +107,6 @@
             [-82.349591, 29.648850]
           ]
         };
-
         // Create a symbol for drawing the polygon
         const simpleFillSymbol = {
           type: "simple-fill",
@@ -132,28 +116,23 @@
             width: 1
           }
         };
-
         // Define popup template for the polygon
         const polygonPopupTemplate = {
           title: "Ben Hill Griffin Stadium",
           content: "Home of the 1996, 2006, and 2008 national champions. Go Gators!"
         };
-
         // Create a graphic and add the geometry and symbol to it
         const polygonGraphic = new Graphic({
           geometry: polygon,
           symbol: simpleFillSymbol,
           popupTemplate: polygonPopupTemplate // Add the popup template here
         });
-
         graphicsLayer.add(polygonGraphic);
-
         // Define a pop-up for usaeduLayer
         const popupEduusa = {
           "title": "{INSTNM}",
           "content": "<b>Location:</b> {CITY}, {STABBR}<br><b>Total Enrollment:</b> {INSTSIZE}<br><b>Website:</b> {WEBADDR}<br>"
         }
-
         // Define a renderer with a visual variable
         const renderer = {
           type: "simple", // autocasts as new SimpleRenderer()
@@ -168,20 +147,16 @@
             }
           }
         };
-
         //adding the Const for the feature layer
         const usaeduLayer = new FeatureLayer({
           url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
-
         //adding the popup here
         outFields: ["INSTNM","INSTSIZE","CITY","STABBR","WEBADDR"],
         popupTemplate: popupEduusa,
         renderer: renderer // Add the renderer here
         });
-
         //adding the feature layer to the map
         map.add(usaeduLayer);
-
         const airportRenderer = {
         "type": "simple",
         "symbol": {
@@ -219,12 +194,9 @@
           renderer: airportRenderer, // Add the renderer here
           definitionExpression: "Fac_Type = 'AIRPORT'", //adding sql to filter for airports
           labelingInfo: [airportLabels] //adding the labels
-
         });
-
         // Add the new feature layer to the map
         map.add(airportLayer);
-
                 // Define a renderer for the heliports
                 const heliportRenderer = {
           "type": "simple",
@@ -235,7 +207,6 @@
             "height": "18px"
           }
         };
-
         // Define labels for the heliports
         const heliportLabels = {
           symbol: {
@@ -255,7 +226,6 @@
             expression: "$feature.Fac_Name"
           }
         };
-
         // Define a new feature layer for the heliports
         const heliportLayer = new FeatureLayer({
           url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_AirportsBark/FeatureServer",
@@ -264,17 +234,14 @@
           definitionExpression: "Fac_Type = 'HELIPORT'", // Filter for heliports
           labelingInfo: [heliportLabels] // Use the heliport labels
         });
-
         // Add the new feature layer to the map
         map.add(heliportLayer);
-
         //adding the const for the feature layer
         const myAirports = new FeatureLayer({
             url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Airports_Bark/FeatureServer",
             
         //adding the popup here
         outFields: ["AirportCode"],
-
         // Add the renderer property here
         renderer: {  
             type: "simple",  
@@ -304,31 +271,47 @@
             labelPlacement: "below-center"
         }]
     });
-
         //adding the feature layer to the map
         map.add(myAirports);
-
         // Set the point layer's LayerInfo
         const pointInfos = {
             layer: myAirports
         }
-
-               // Begin Editor constructor
-               const editor = new Editor({
+        // Begin Editor constructor
+        const editor = new Editor({
             view: view,
             layerInfos: [pointInfos]
         }); // End Editor constructor
+        // Add the widget to the view
+        view.ui.add(editor, "top-right");
 
-        view.when(function() {
-            // Add the widget to the view
-            view.ui.add(editor, "top-right");
+        // Add the widget to the view
+        view.ui.add(editor, "top-right");
 
+        // Create a new Legend
+        var legend = new Legend({
+            view: view,
+            layerInfos: [{
+                layer: airport,
+                title: "Airports"
+            }, {
+                layer: heliport,
+                title: "Heliports"
+            }, {
+                layer: myAirports,
+                title: "My Airports"
+            }]
         });
 
+        // Add the Legend to the view
+        view.ui.add(legend, "bottom-right");
+
+        });
         </script>
 
-      <!-- css to make a full screen map -->
-  
+
+        <!-- css to make a full screen map -->
+
   <style>
     html,
     body,
@@ -339,12 +322,9 @@
       width: 100%;
     }
   </style>
-
 </head>
 <body>
-
   <!-- the div to displays the map  -->
   <div id="viewDiv"></div>
-
 </body>
 </html>
