@@ -271,20 +271,38 @@
         const myAirports = new FeatureLayer({
             url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Airports_Bark/FeatureServer",
             
-            //adding the popup here
-            outFields: ["AirportCode"],
+        //adding the popup here
+        outFields: ["AirportCode"],
 
-            // Add the renderer property here
-            renderer: {  
-                type: "simple",  
-                symbol: {  
-                    type: "picture-marker",  
-                    url: "https://amberbark.github.io/agolrest/585px-Google_Maps_pin.svg.png",
-                    width: "24px",
-                    height: "24px"
-                }
+        // Add the renderer property here
+        renderer: {  
+            type: "simple",  
+            symbol: {  
+                type: "picture-marker",  
+                url: "https://amberbark.github.io/agolrest/585px-Google_Maps_pin.svg.png",
+                width: "18px",
+                height: "22px"
             }
-        });
+        },
+
+        // Add the labelingInfo property here
+        labelingInfo: [{
+        labelExpressionInfo: { expression: "$feature.AirportCode" },
+        symbol: {
+        type: "text",  // autocasts as new TextSymbol()
+        color: "white",
+        haloColor: "#5E8D74",
+        haloSize: "2px",
+        font: {  // autocast as new Font()
+            size: 12,
+            family: "Noto Sans",
+            style: "italic",
+            weight: "normal"
+                }
+            },
+            labelPlacement: "below-center"
+        }]
+    });
 
         //adding the feature layer to the map
         map.add(myAirports);
