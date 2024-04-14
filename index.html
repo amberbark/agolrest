@@ -323,28 +323,11 @@
             // Add the widget to the view
             view.ui.add(editor, "top-right");
 
-            // Create a new Legend
-            var legend = new Legend({
-                view: view,
-                layerInfos: [{
-                    layer: airport,
-                    title: "Airports"
-                }, {
-                    layer: heliport,
-                    title: "Heliports"
-                }, {
-                    layer: myAirports,
-                    title: "My Airports"
-                }]
-            });
-
-            // Add the Legend to the view
-            view.ui.add(legend, "bottom-right");
-        }); // End of view.when()
+        });
 
         </script>
 
-        <!-- css to make a full screen map -->
+      <!-- css to make a full screen map -->
   
   <style>
     html,
