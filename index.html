@@ -31,7 +31,7 @@
       const view = new MapView({
           map: map,
           center: [-82.3549, 29.6436], // Longitude, latitude
-          zoom: 14, // Zoom level
+          zoom: 12, // Zoom level
           container: "viewDiv" // Div element
         });
       
@@ -269,11 +269,21 @@
 
         //adding the const for the feature layer
         const myAirports = new FeatureLayer({
-        url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Airports_Bark/FeatureServer",
-        
-        //adding the popup here
-        outFields: ["AirportCode"],
+            url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Airports_Bark/FeatureServer",
+            
+            //adding the popup here
+            outFields: ["AirportCode"],
 
+            // Add the renderer property here
+            renderer: {  
+                type: "simple",  
+                symbol: {  
+                    type: "picture-marker",  
+                    url: "https://amberbark.github.io/agolrest/outline_flight_takeoff_black_24dp.png",
+                    width: "24px",
+                    height: "24px"
+                }
+            }
         });
 
         //adding the feature layer to the map
@@ -281,22 +291,22 @@
 
         // Set the point layer's LayerInfo
         const pointInfos = {
-        layer: myAirports
+            layer: myAirports
         }
 
         // Begin Editor constructor
         const editor = new Editor({
-        view: view,
-        layerInfos: [pointInfos]
+            view: view,
+            layerInfos: [pointInfos]
         }); // End Editor constructor
 
         // Add the widget to the view
         view.ui.add(editor, "top-right");
-      
-      });
-  </script>
 
-  <!-- css to make a full screen map -->
+        });
+        </script>
+
+        <!-- css to make a full screen map -->
   
   <style>
     html,
