@@ -322,6 +322,7 @@
         // Add the widget to the view
         view.ui.add(editor, "top-right");
 
+        view.when(function() {
         // Add the widget to the view
         view.ui.add(editor, "top-right");
 
@@ -342,10 +343,9 @@
 
         // Add the Legend to the view
         view.ui.add(legend, "bottom-right");
+    }); // End of view.when()
 
-        });
         </script>
-
 
         <!-- css to make a full screen map -->
   
